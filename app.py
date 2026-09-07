@@ -8,6 +8,6 @@ app = OpenAPI(__name__, info=info)
 CORS(app)
 
 import Routes.Musica_Rotas
-
+# teste
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
