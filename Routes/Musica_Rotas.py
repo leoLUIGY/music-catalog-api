@@ -32,7 +32,7 @@ def get_musicas():
         session.close()
 
 @app.get('/musica', tags=[musica_tag])
-def get_time(query: MusicaBuscaSchema):
+def get_musica(query: MusicaBuscaSchema):
     """Buscar uma musica especifica
     """
     musica_id = query.id
@@ -48,7 +48,7 @@ def get_time(query: MusicaBuscaSchema):
         session.close()
 
 @app.post('/musica', tags=[musica_tag])
-def add_time(form: MusicaSchema):
+def add_musica(form: MusicaSchema):
     """ Adicionar uma nova musica ao catalogo
     """
     
@@ -76,7 +76,7 @@ def add_time(form: MusicaSchema):
         session.close()
 
 @app.put('/musica', tags=[musica_tag])
-def update_time(form: MusicaUpdateSchema):
+def update_musica(form: MusicaUpdateSchema):
     """Editar informações de uma musica
     """
     musica_id = form.id
@@ -107,7 +107,7 @@ def update_time(form: MusicaUpdateSchema):
         session.close()
 
 @app.delete('/musica', tags=[musica_tag])
-def delete_time(query: MusicaBuscaSchema):
+def delete_musica(query: MusicaBuscaSchema):
     """Deletar um musica a partir do id informado
     """
     musica_id = query.id
