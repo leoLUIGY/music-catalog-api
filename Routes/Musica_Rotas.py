@@ -48,15 +48,15 @@ def get_musica(query: MusicaBuscaSchema):
         session.close()
 
 @app.post('/musica', tags=[musica_tag])
-def add_musica(form: MusicaSchema):
+def add_musica(body: MusicaSchema):
     """ Adicionar uma nova musica ao catalogo
     """
     
     musica = Musica(
-        nome = form.nome,
-        data_criacao = form.data_criacao,
-        nome_criador = form.nome_criador,
-        genero = form.genero,
+        nome = body.nome,
+        data_criacao = body.data_criacao,
+        nome_criador = body.nome_criador,
+        genero = body.genero,
        
     )
     session = Session()
@@ -76,10 +76,10 @@ def add_musica(form: MusicaSchema):
         session.close()
 
 @app.put('/musica', tags=[musica_tag])
-def update_musica(form: MusicaUpdateSchema):
+def update_musica(body: MusicaUpdateSchema):
     """Editar informações de uma musica
     """
-    musica_id = form.id
+    musica_id = body.id
     session = Session()
     try:
         musica = session.query(Musica).filter(Musica.id == musica_id).first()
@@ -88,10 +88,10 @@ def update_musica(form: MusicaUpdateSchema):
             return {"mesage": error_msg}, 404
         else:
             
-            musica.nome = form.nome
-            musica.data_criacao = form.data_criacao
-            musica.nome_criador = form.nome_criador
-            musica.genero = form.genero
+            musica.nome = body.nome
+            musica.data_criacao = body.data_criacao
+            musica.nome_criador = body.nome_criador
+            musica.genero = body.genero
 
         
             session.commit()
